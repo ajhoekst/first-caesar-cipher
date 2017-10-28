@@ -14,3 +14,6 @@ target_link_libraries(run filemmap caesar)
 
 add_executable(encrypt encrypt.cpp)
 target_link_libraries(encrypt filemmap caesar)
+
+add_executable(decrypt decrypt.cpp)
+target_link_libraries(decrypt filemmap caesar)

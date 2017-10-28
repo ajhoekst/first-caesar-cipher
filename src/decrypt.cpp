@@ -14,7 +14,7 @@ int main(
     CaesarRead message( argv[1] );
 
     // Prepare output message
-    CaesarWrite encrypted(
+    CaesarWrite decrypted(
         argv[2],
         message.end()
     );
@@ -29,7 +29,7 @@ int main(
         index++
     )
     {
-        encrypted(index, cipher.encrypt(message[index]));
+        decrypted(index, cipher.decrypt(message[index]));
     }
 
     return 0;
