@@ -33,6 +33,7 @@ char CaesarCipher::decrypt(
 
 CaesarFile::CaesarFile()
 {
+    map_.length = 0;
 }
 
 CaesarFile::CaesarFile(
@@ -42,7 +43,7 @@ CaesarFile::CaesarFile(
     ahio::map_file(
         &map_,
         filename,
-        FILE_MAP_RW_PRIVATE
+        FILE_MAP_RW_SHARED
     );
 }
 
@@ -75,17 +76,27 @@ CaesarRead::CaesarRead(
     ahio::map_file(
         &map_,
         filename,
-        FILE_MAP_R_PRIVATE
+        FILE_MAP_R_SHARED
     );
 }
 
 CaesarWrite::CaesarWrite(
-    const char* filename
+    const char* filename,
+    std::size_t maxBytes
 ) : CaesarFile()
 {
+    map_.length = maxBytes;
     ahio::map_file(
         &map_,
         filename,
-        FILE_MAP_W_PRIVATE
+        FILE_MAP_W_SHARED
     );
+}
+
+void CaesarWrite::operator()(
+    const std::size_t& index,
+    const char& data
+)
+{
+    ((char*) map_.address)[index] = data;
 }

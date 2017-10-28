@@ -52,6 +52,11 @@ class CaesarWrite : public CaesarFile
 {
 public:
     CaesarWrite(
-        const char* filename
+        const char* filename,
+        std::size_t maxBytes
+    );
+    void operator()(
+        const std::size_t& index,
+        const char& data
     );
 };
