@@ -31,6 +31,7 @@ public:
     CaesarFile(
         const char* filename
     );
+    ~CaesarFile();
     std::size_t begin();
     std::size_t end();
     char operator[](

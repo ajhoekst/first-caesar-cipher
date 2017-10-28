@@ -41,6 +41,10 @@ CaesarFile::CaesarFile(
         FILE_MAP_R_PRIVATE
     );
 }
+CaesarFile::~CaesarFile()
+{
+    ahio::unmap_file( &map_ );
+}
 
 std::size_t CaesarFile::begin()
 {
