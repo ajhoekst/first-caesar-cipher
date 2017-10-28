@@ -25,16 +25,33 @@ public:
 
 class CaesarFile
 {
-private:
+protected:
     ahio::file_map map_;
 public:
+    CaesarFile();
     CaesarFile(
         const char* filename
     );
     ~CaesarFile();
     std::size_t begin();
     std::size_t end();
-    char operator[](
+    char& operator[](
         std::size_t index
+    );
+};
+
+class CaesarRead : public CaesarFile
+{
+public:
+    CaesarRead(
+        const char* filename
+    );
+};
+
+class CaesarWrite : public CaesarFile
+{
+public:
+    CaesarWrite(
+        const char* filename
     );
 };

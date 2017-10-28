@@ -13,7 +13,7 @@ int main(
     std::size_t index;
 
     // Load input message
-    CaesarFile message( argv[1] );
+    CaesarRead message( argv[1] );
 
     // Create cipher
     CaesarCipher cipher( argv[2] );

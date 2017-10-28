@@ -11,3 +11,6 @@ add_library(caesar STATIC caesar.cpp)
 
 add_executable(run main.cpp)
 target_link_libraries(run filemmap caesar)
+
+add_executable(encrypt encrypt.cpp)
+target_link_libraries(encrypt filemmap caesar)
