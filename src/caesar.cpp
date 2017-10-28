@@ -4,21 +4,57 @@
 
 #include "file-mmap.h"
 
-#include <iostream>
+CaesarCipher::CaesarCipher(
+    const int key
+) : key_(key)
+{
+}
 
-int main(
-    int argc,
-    char** argv
+CaesarCipher::CaesarCipher(
+    const char* arg
 )
 {
-    ahio::file_map m;
+    key_ = atoi(arg);
+}
+
+char CaesarCipher::encrypt(
+    const char data
+)
+{
+    return data + key_;
+}
+
+char CaesarCipher::decrypt(
+    const char data
+)
+{
+    return data - key_;
+}
+
+CaesarFile::CaesarFile(
+    const char* filename
+)
+{
     ahio::map_file(
-        &m,
-        argv[1],
+        &map_,
+        filename,
         FILE_MAP_R_PRIVATE
     );
-    printf("File contents:\n%s\n", m.address);
-    ahio::unmap_file( &m );
+}
 
+std::size_t CaesarFile::begin()
+{
     return 0;
+}
+
+std::size_t CaesarFile::end()
+{
+    return map_.length;
+}
+
+char CaesarFile::operator[](
+    std::size_t index
+)
+{
+    return ((char*) map_.address)[index];
 }
