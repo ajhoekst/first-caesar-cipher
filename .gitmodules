@@ -1,0 +1,3 @@
+[submodule "external/ahio"]
+	path = external/ahio
+	url = https://github.com/ajhoekst/ahio
