@@ -10,9 +10,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${caesar_SOURCE_DIR}/build/bin)
 add_library(caesar STATIC caesar.cpp)
 target_link_libraries(caesar filemmap)
 
-add_executable(run main.cpp)
-target_link_libraries(run caesar)
-
 add_executable(encrypt encrypt.cpp)
 target_link_libraries(encrypt caesar)
 
